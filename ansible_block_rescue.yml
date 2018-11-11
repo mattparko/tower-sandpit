@@ -1,0 +1,18 @@
+---
+# This playbook is being used to test the playbook pass/fail logic in Tower
+
+- name: Force a failure in a block/rescue
+  hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - block:
+        - debug:
+            msg: Before failure
+        - fail:
+            msg: Forcing a task failure
+        - debug:
+            msg: After failure
+      rescue:
+        - debug:
+            msg: I'm rescued!
